@@ -1,7 +1,10 @@
 .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px 10px;
+    max-width: 1440px;
+    display: grid;
+    padding: 20px;
+    margin: 0 auto;
+    place-items: center;
+}
+.heading {
+    font-size: 36px;
 }

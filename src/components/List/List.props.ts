@@ -1,7 +1,7 @@
 import IUser from "../../Interfaces/user";
 
 interface ListProps {
-    filter: string;
+    filter: string,
     data: IUser[]
 }
 export default ListProps;

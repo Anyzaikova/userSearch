@@ -15,7 +15,7 @@ interface IUser {
     email: string,
     phone: string,
     registered: {
-        date: Date;
+        date: string;
     }
 }
 

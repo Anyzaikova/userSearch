@@ -1,23 +1,35 @@
 import styles from './Search.module.css';
-import {ChangeEvent, FC} from "react";
+import { ChangeEvent, FC } from "react";
 import SearchProps from "./Search.props";
 
+const Search: FC<SearchProps> = ({ onChange }) => {
 
-const Search: FC<SearchProps> = ({onChange, onReset}) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        debounce(e.target.value);
+    };
 
-    function handleChange(e: ChangeEvent<HTMLInputElement>) {
-        onChange(e.target.value);
-    }
+    const debounce = (value: string) => {
+        setTimeout(() => {
+            onChange(value);
+        }, 400);
+    };
+
+    const handleReset = () => {
+        onChange('');
+    };
 
     return (
         <div className={styles['search']}>
             <form className={styles['form']}>
-                <input placeholder='Поиск' onChange={handleChange}/>
-                <button type='button' onClick={onReset}>Reset</button>
+                <input className={styles['input']}
+                    placeholder='Поиск...'
+                    onChange={handleChange}
+                    type="search"
+                />
+                <button className={styles['button']} type='reset' onClick={handleReset}>Reset</button>
             </form>
         </div>
-
-    )
-}
+    );
+};
 
 export default Search;

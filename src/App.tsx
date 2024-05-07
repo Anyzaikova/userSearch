@@ -1,6 +1,4 @@
-
 import './App.css'
-
 import Search from "./components/Search/Search";
 import List from "./components/List/List";
 import {useState, useEffect} from "react";
@@ -9,27 +7,17 @@ import IUser from "./Interfaces/user";
 
 const url = 'https://randomuser.me/api/?results=15';
 
-
 function App() {
-
     const [filter, setFilter] = useState<string>('');
     const [data, setData] = useState<IUser[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-
 
     const handleChangeFilter = (value: string) => {
         setFilter(value);
     };
 
-    const handleResetFilter = () => {
-        setFilter('');
-    };
-
-
     useEffect(() => {
-
-
-        const fetchData = async () => {
+        const fetchData= async ():Promise<void> => {
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -44,26 +32,20 @@ function App() {
             }
         }
         fetchData();
-
     }, [])
 
-
     return (
-
         <div className='App'>
             {isLoading ? (
                 <Loader/>
             ) : (
                 <>
-                    <h1>User Search</h1>
-                    <Search onChange={handleChangeFilter} onReset={handleResetFilter}/>
+                    <h1 className='heading'>User Search</h1>
+                    <Search onChange={handleChangeFilter}/>
                     <List filter={filter} data={data}/>
-
                 </>
             )}
         </div>
-
-
     )
 }
 
