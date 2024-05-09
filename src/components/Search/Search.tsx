@@ -4,17 +4,21 @@ import SearchProps from "./Search.props";
 
 const Search: FC<SearchProps> = ({ onChange }) => {
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        debounce(e.target.value);
-    };
+    let timeoutId:number;
 
     const debounce = (value: string) => {
-        setTimeout(() => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
             onChange(value);
         }, 800);
     };
 
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        debounce(e.target.value);
+    };
+
     const handleReset = () => {
+        clearTimeout(timeoutId);
         onChange('');
     };
 
