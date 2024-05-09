@@ -11,7 +11,7 @@ const Search: FC<SearchProps> = ({ onChange }) => {
     const debounce = (value: string) => {
         setTimeout(() => {
             onChange(value);
-        }, 400);
+        }, 800);
     };
 
     const handleReset = () => {
